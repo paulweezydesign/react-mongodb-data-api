@@ -10,6 +10,17 @@ const api = createMongoDBDataAPI({
   urlEndpoint:
     'https://us-west-2.aws.data.mongodb-api.com/app/data-sealj/endpoint/data/v1/action/find',
 });
+api
+  .find({
+    dataSource: 'Cluster0',
+    database: 'kittens',
+    collection: 'kittens',
+    projection: { _id: 0, id: 1, name: 1, image: 1, image2: 0, description: 0 },
+  })
+  .then((result) => {
+    console.log(result.document);
+  });
+
 function App() {
   const [count, setCount] = useState(0);
 
